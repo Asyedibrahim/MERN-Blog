@@ -12,8 +12,9 @@ export default function Oauth() {
     const navigate = useNavigate();
 
     const handleGoogle = async () => {
-        const provider = new GoogleAuthProvider();
         const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' })
         const result = await signInWithPopup(auth, provider);
 
         try {
@@ -30,11 +31,10 @@ export default function Oauth() {
                 })
             });
             const data = await res.json();
-            if (data.success === false) {
-                dispatch(signInFailure(data.message));
+            if (res.ok) {
+                dispatch(signInSuccess(data));
+                navigate('/');
             }
-            dispatch(signInSuccess(data));
-            navigate('/');
         } catch (error) {
             dispatch(signInFailure(error.message));
         }
