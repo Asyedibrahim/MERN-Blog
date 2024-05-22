@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required:true,
+    },
+    avatar: {
+        type: String,
+        default: "https://w7.pngwing.com/pngs/378/16/png-transparent-profile-profile-picture-human-face-head-man-woman-community-outline-schema.png"
     }
 }, { timestamps: true });
 

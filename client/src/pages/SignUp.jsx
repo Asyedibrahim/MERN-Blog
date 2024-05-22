@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Alert, Button, Checkbox, Label, Spinner, TextInput } from 'flowbite-react'
+import Oauth from './Oauth';
 
 export default function SignUp() {
 
@@ -93,6 +94,7 @@ export default function SignUp() {
               ) : 'Sign Up'
               }
             </Button>
+            <Oauth/>
           </form>
           <div className="flex gap-2 mt-5">
             <span>Already have an account?</span>
