@@ -70,15 +70,15 @@ export default function SignUp() {
           <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
             <div>
               <Label value='Your username' />
-              <TextInput type='text' placeholder='Username' id='username' onChange={handleChange}/>
+              <TextInput type='text' placeholder='username' id='username' onChange={handleChange}/>
             </div>
             <div>
               <Label value='Your email' />
               <TextInput type='email' placeholder='name@company.com' id='email' onChange={handleChange}/>
             </div>
             <div>
-              <Label value='Your Password' />
-              <TextInput type='password' placeholder='Password' id='password' onChange={handleChange}/>
+              <Label value='Your password' />
+              <TextInput type='password' placeholder='***********' id='password' onChange={handleChange}/>
             </div>
             <div className='flex gap-2 items-center'>
               <Checkbox onClick={handleShow} id='show'/>

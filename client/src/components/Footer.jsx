@@ -13,6 +13,7 @@ export default function FooterCon() {
                     <Link to='/' className='self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:text-white'>
                         <span className='px-2 py-1 bg-gradient-to-br from-green-400 to-cyan-600 rounded-lg text-white'>JoyBoy's</span>Blog
                     </Link>
+                    <p className='text-slate-500 mt-3 sm:ml-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, fuga! <br />Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, libero?</p>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6">
