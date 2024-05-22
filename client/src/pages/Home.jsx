@@ -1,7 +1,11 @@
-import React from 'react'
+import { Button } from 'flowbite-react'
+import React, { useState } from 'react'
 
-export default function Home() {
+export default function () {
+
   return (
-    <div>Home</div>
+    <div className=''>
+      Home
+    </div>
   )
 }
