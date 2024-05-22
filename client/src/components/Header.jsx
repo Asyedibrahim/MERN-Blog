@@ -1,13 +1,16 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput } from 'flowbite-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { FaMoon } from 'react-icons/fa';
-import { useSelector } from 'react-redux'
+import { FaMoon, FaSun } from 'react-icons/fa';
+import { useSelector, useDispatch } from 'react-redux';
+import { toogleTheme } from '../redux/theme/themeSlice';
 
 export default function Header() {
 
     const path = useLocation().pathname;
     const { currentUser } = useSelector(state => state.user);
+    const { theme } = useSelector(state => state.theme);
+    const dispatch = useDispatch();
 
   return (
     <Navbar className='border-b-2'>
@@ -65,9 +68,10 @@ export default function Header() {
                     Projects
                 </Navbar.Link>
             </Link>
-            <Navbar.Link className='flex gap-1 cursor-pointer'>
-                <FaMoon className='mt-1'/>
-                <span className='md:hidden'>Dark Mode</span>
+            <Navbar.Link className='flex gap-1 cursor-pointer' onClick={() => dispatch(toogleTheme())}>
+                { theme === 'dark' ?  <FaSun className='mt-1'/> : <FaMoon className='mt-1'/> }
+                { theme === 'dark' ?  <span className='md:hidden'>Light Mode</span> : <span className='md:hidden'>Dark Mode</span> }
+                
             </Navbar.Link>
         </Navbar.Collapse>
 
