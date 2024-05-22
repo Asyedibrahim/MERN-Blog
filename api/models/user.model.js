@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: "https://w7.pngwing.com/pngs/378/16/png-transparent-profile-profile-picture-human-face-head-man-woman-community-outline-schema.png"
+        default: "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?size=338&ext=jpg&ga=GA1.1.44546679.1716336000&semt=ais_user"
     }
 }, { timestamps: true });
 
