@@ -112,6 +112,7 @@ export default function DashProfile() {
           title: 'Success',
           message: "<strong>User's profile updated successfully</strong>",
           position: 'topRight',
+          timeout: 3000
         });
         setUploadProgress(null);
         setLoading(false);

@@ -40,6 +40,7 @@ export default function Oauth() {
                     title: 'Success',
                     message: "<strong>Signed in successfully</strong>",
                     position: 'topRight',
+                    timeout: 2000
                   });
                 navigate('/');
             }

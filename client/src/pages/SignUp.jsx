@@ -43,6 +43,7 @@ export default function SignUp() {
           title: 'Success',
           message: "<strong>Signed up successfully</strong>",
           position: 'topRight',
+          timeout: 2000
         });
         navigate('/sign-in');
       }
