@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Alert, Button, Checkbox, Label, Spinner, TextInput } from 'flowbite-react'
 import Oauth from './Oauth';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 
 export default function SignUp() {
 
@@ -36,6 +39,11 @@ export default function SignUp() {
       }
       setLoading(false);
       if (res.ok) {
+        iziToast.success({
+          title: 'Success',
+          message: "<strong>Signed up successfully</strong>",
+          position: 'topRight',
+        });
         navigate('/sign-in');
       }
     } catch (error) {

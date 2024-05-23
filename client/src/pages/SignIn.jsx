@@ -4,6 +4,8 @@ import { Alert, Button, Checkbox, Label, Spinner, TextInput } from 'flowbite-rea
 import { useDispatch, useSelector } from 'react-redux'
 import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice';
 import Oauth from './Oauth';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 export default function SignIn() {
 
@@ -37,6 +39,11 @@ export default function SignIn() {
       }
       dispatch(signInSuccess(data));
       if (res.ok) {
+        iziToast.success({
+          title: 'Success',
+          message: "<strong>Signed in successfully</strong>",
+          position: 'topRight',
+        });
         navigate('/');
       }
     } catch (error) {

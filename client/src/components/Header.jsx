@@ -30,7 +30,7 @@ export default function Header() {
 
         <div className="flex gap-2 md:order-2">
             {currentUser ? (
-                <Dropdown arrowIcon={false} inline label={<Avatar alt='user' img={currentUser.avatar} rounded/>}>
+                <Dropdown arrowIcon={false} inline label={<Avatar alt='user' img={currentUser.avatar} rounded />}>
                     <Dropdown.Header>
                         <span className='block text-sm'>{currentUser.username}</span>
                         <span className='block text-sm font-medium truncate'>{currentUser.email}</span>

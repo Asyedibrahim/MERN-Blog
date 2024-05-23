@@ -45,7 +45,8 @@ export const updateUser = async (req, res, next) => {
         }, { new: true });
 
         const { password: pass, ...rest } = updatedUser._doc;
-        res.status(200).json(rest)
+        res.status(200).json(rest);
+        
     } catch (error) {
         if (error.code === 11000) {
             next(errorHandler(403, 'Username or Email is already exists'))

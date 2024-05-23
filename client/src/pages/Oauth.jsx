@@ -5,6 +5,9 @@ import { app } from '../firebase.js'
 import { useDispatch } from 'react-redux'
 import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice.js'
 import { useNavigate } from 'react-router-dom'
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 
 export default function Oauth() {
 
@@ -33,6 +36,11 @@ export default function Oauth() {
             const data = await res.json();
             if (res.ok) {
                 dispatch(signInSuccess(data));
+                iziToast.success({
+                    title: 'Success',
+                    message: "<strong>Signed in successfully</strong>",
+                    position: 'topRight',
+                  });
                 navigate('/');
             }
         } catch (error) {
