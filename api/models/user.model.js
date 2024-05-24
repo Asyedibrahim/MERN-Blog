@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: String,
         default: "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?size=338&ext=jpg&ga=GA1.1.44546679.1716336000&semt=ais_user"
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true });
 
