@@ -23,6 +23,10 @@ export const createPost = async (req, res, next) => {
         const savedPost = await newPost.save();
         res.status(201).json(savedPost);
     } catch (error) {
-        next(error)
+        if (error.code === 11000) {
+            next(errorHandler(400, 'Title already exists!'))
+        } else {
+            next(error)
+        }
     }
 };
