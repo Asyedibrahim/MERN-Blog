@@ -79,7 +79,7 @@ export default function SignIn() {
           <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
             <div>
               <Label value='Your username' />
-              <TextInput type='text' placeholder='username' id='username' onChange={handleChange}/>
+              <TextInput type='text' placeholder='username' id='username' onChange={handleChange} autoComplete='off'/>
             </div>
             <div>
               <Label value='Your password' />

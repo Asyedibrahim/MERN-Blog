@@ -2,6 +2,7 @@ import { Alert, Button, Spinner, TextInput } from 'flowbite-react';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDownloadURL, getStorage, uploadBytesResumable, ref } from 'firebase/storage';
+import { Link } from 'react-router-dom'
 import { app } from '../firebase.js';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -166,6 +167,11 @@ export default function DashProfile() {
               ) : 'update'
               }
             </Button>
+            {currentUser.isAdmin && (
+            <Link to={'/create-post'}>
+              <Button type='button' gradientMonochrome='teal' className='w-full uppercase'>Create a post</Button>
+            </Link>
+            )}
         </form>
         {error && <Alert color={'failure'} className='mt-5'>{error}</Alert>}
     </div>
