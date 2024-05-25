@@ -9,3 +9,8 @@ body{
 .ql-editor {
     font-size: 1.05rem;
 }
+
+.swal2-popup {
+    background-color: rgb(29, 32, 41); 
+    color: #d4d8dd; 
+}

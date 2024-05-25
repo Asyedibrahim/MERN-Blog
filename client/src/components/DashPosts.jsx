@@ -10,7 +10,8 @@ export default function DashPosts() {
   const { currentUser } = useSelector((state) => state.user);
   const [userPosts, setUserPosts] = useState([]);
   const [showMore, setShowMore] = useState(true);
-  const [postIdToDelete, setPostIdToDelete] = useState('');
+  const [loading, setLoading] = useState(true);
+
 
   
   useEffect(()=> {
@@ -20,6 +21,7 @@ export default function DashPosts() {
         const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`);
         const data = await res.json();
         if (res.ok) {
+          setLoading(false);
           setUserPosts(data.posts);
           if (data.posts.length < 9){
             setShowMore(false)
@@ -57,13 +59,13 @@ export default function DashPosts() {
     try {
       const result = await Swal.fire({
         title: 'Are you sure?',
-        text: 'Your account and all the listing will be delete!',
+        text: 'You cannot retrive this post!',
         icon: 'error',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
         confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'Cancel !'
+        cancelButtonText: 'Cancel !',
       });
   
       if (result.isConfirmed) {
@@ -81,12 +83,13 @@ export default function DashPosts() {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
 
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 '>
-      {currentUser.isAdmin && userPosts.length > 0 ? (
+      {loading ? <p className='text-3xl my-52 text-center'>Loading...</p> : 
+      currentUser.isAdmin && userPosts.length > 0 && !loading ? (
         <>
           <Table hoverable className='shadow-md'>
             <Table.Head>
@@ -99,8 +102,8 @@ export default function DashPosts() {
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
-            {userPosts.map((post, index) => (
-              <Table.Body className='divide-y' key={index}>
+            {userPosts.map((post) => (
+              <Table.Body className='divide-y' key={post._id}>
                 <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800' >
                   <Table.Cell>{new Date(post.updatedAt).toLocaleDateString()}</Table.Cell>
                   <Table.Cell>
@@ -109,7 +112,7 @@ export default function DashPosts() {
                     </Link>
                   </Table.Cell>
                   <Table.Cell>
-                    <Link to={`post/${post.slug}`} className='font-medium text-gray-900 dark:text-white'>{post.title}</Link>
+                    <Link to={`/post/${post.slug}`} className='font-medium text-gray-900 dark:text-white'>{post.title}</Link>
                   </Table.Cell>
                   <Table.Cell>{post.category}</Table.Cell>
                   <Table.Cell>
@@ -117,7 +120,7 @@ export default function DashPosts() {
                     onClick={() => handleDeletePost(post._id)}>Delete</span>
                   </Table.Cell>
                   <Table.Cell className='text-teal-500 font-medium hover:underline'>
-                    <Link to={`update-post/${post.slug}`}>Edit</Link>
+                    <Link to={`/update-post/${post._id}`}>Edit</Link>
                   </Table.Cell>
                 </Table.Row>
               </Table.Body>
