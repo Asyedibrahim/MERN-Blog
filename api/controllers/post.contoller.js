@@ -16,7 +16,7 @@ export const createPost = async (req, res, next) => {
     const newPost = new Post({
         ...req.body,
         slug,
-        adminId: req.user.id
+        userId: req.user.id
     });
 
     try {
@@ -39,7 +39,7 @@ export const getPosts = async (req, res, next) => {
         const sortDirection = req.query.order === 'asc' ? 1 : -1;
 
         const posts = await Post.find({
-            ...(req.query.adminId && { adminId: req.query.adminId }),
+            ...(req.query.userId && { userId: req.query.userId }),
             ...(req.query.category && { category: req.query.category }),
             ...(req.query.slug && { slug: req.query.slug }),
             ...(req.query.postId && { _id: req.query.postId }),
