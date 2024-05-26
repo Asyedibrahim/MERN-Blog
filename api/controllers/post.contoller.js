@@ -107,10 +107,6 @@ export const updatePost = async (req, res, next) => {
 
         res.status(200).json(updatedPost);
     } catch (error) {
-        if (error.code === 11000) {
-            next(errorHandler(400, 'Title already exists'));
-        } else {
-            next(error)
-        }
+        next(error)
     }
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Table } from 'flowbite-react';
+import { Spinner, Table } from 'flowbite-react';
 import Swal from 'sweetalert2';
 import { FaCheck, FaTimes} from 'react-icons/fa'
 
@@ -86,7 +86,7 @@ export default function DashUsers() {
 
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 '>
-      {loading ? <p className='text-3xl my-52 text-center'>Loading...</p> : 
+      {loading ? <p className='text-3xl my-52 justify-center flex items-center gap-2'>Loading...<Spinner size='lg'/></p> : 
       currentUser.isAdmin && users.length > 0 && !loading ? (
         <>
           <Table hoverable className='shadow-md'>
