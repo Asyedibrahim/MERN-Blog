@@ -54,6 +54,35 @@ export default function DashUsers() {
     }
   };
 
+  const handleDeleteUser = async (userId) => {
+    try {
+      const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'You cannot retrive this post!',
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel !',
+      });
+  
+      if (result.isConfirmed) {
+        const res = await fetch(`/api/user/delete/${userId}`, {
+          method: 'DELETE'
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setUsers((prev) => prev.filter((user) => user._id !== userId));
+        } else {
+          console.log(data.message);
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
 
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 '>
@@ -86,7 +115,7 @@ export default function DashUsers() {
                   <Table.Cell>{user.isAdmin ? (<FaCheck className='text-green-500'/>) : (<FaTimes className='text-red-500'/>)}</Table.Cell>
 
                   <Table.Cell>
-                    <span className='text-red-500 font-medium hover:underline cursor-pointer' >Delete</span>
+                    <span className='text-red-500 font-medium hover:underline cursor-pointer' onClick={() => handleDeleteUser(user._id)}>Delete</span>
                   </Table.Cell>
 
                 </Table.Row>

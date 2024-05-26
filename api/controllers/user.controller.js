@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from 'bcryptjs';
+import Post from "../models/post.model.js"
 
 
 export const test = (req, res) => {
@@ -58,13 +59,14 @@ export const updateUser = async (req, res, next) => {
 
 
 export const deleteUser = async (req, res, next) => {
-    if (req.user.id !== req.params.userId) 
+    if (!req.user.isAdmin && req.user.id !== req.params.userId) 
         return next(errorHandler(401, 'You are not allowed to delete this account!'))
 
     try {
         await User.findByIdAndDelete(req.params.userId);
-        res.clearCookie('access_token');
-        res.status(200).json('User has been deleted!')
+        await Post.deleteMany({userId: req.params.userId});
+
+        res.status(200).json('User and posts has been deleted!')
         
     } catch (error) {
         next(error);

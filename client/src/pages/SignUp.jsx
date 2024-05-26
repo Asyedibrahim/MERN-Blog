@@ -41,7 +41,7 @@ export default function SignUp() {
       if (res.ok) {
         iziToast.success({
           title: 'Success',
-          message: "<strong>Signed up successfully</strong>",
+          message: "<strong>User created successfully</strong>",
           position: 'topRight',
           timeout: 2000
         });
