@@ -30,7 +30,7 @@ export default function DashSidebar() {
         try {
             const result = await Swal.fire({
                 title: 'Are you sure?',
-                text: 'Your account will be delete!',
+                text: 'Your account will be deleted!',
                 icon: 'error',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

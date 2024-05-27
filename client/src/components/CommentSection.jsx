@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Alert, Button, Textarea } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import Comment from './Comment';
+import Swal from 'sweetalert2';
 
 
 export default function CommentSection({postId}) {
@@ -91,6 +92,39 @@ export default function CommentSection({postId}) {
         ));
     };
 
+    const handleDelete = async (commentId) => {
+        try {
+            if (!currentUser) {
+                navigate('/sign-in');
+                return;
+            }
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'Your comment will be deleted!',
+                icon: 'error',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel !'
+              });
+          
+            if (result.isConfirmed) {
+                const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
+                    method: 'DELETE'
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    setComments(comments.filter((comment) => comment._id !== commentId ))
+                } else {
+                    console.log(data.message);
+                }
+            };
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
 
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
@@ -134,7 +168,8 @@ export default function CommentSection({postId}) {
                     key={comment._id} 
                     comment={comment}
                     onLike={handleLike}
-                    onEdit={handleEdit}/>
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}/>
             ))}
             </>
         )}
