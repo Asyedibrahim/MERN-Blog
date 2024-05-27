@@ -5,17 +5,21 @@ import DashProfile from "../components/DashProfile";
 import DashPosts from "../components/DashPosts";
 import DashUsers from "../components/DashUsers";
 import DashComment from "../components/DashComment";
+import DashboardComp from "../components/DashboardComp";
 
 export default function Dashboard() {
 
   const location = useLocation();
   const [tab, setTab] = useState('');
+    
   
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const tabFromUrl = urlParams.get('tab');
     if ( tabFromUrl ) {
       setTab(tabFromUrl);
+    } else {
+      setTab('dash')
     }
   }, [location.search])
 
@@ -30,11 +34,13 @@ export default function Dashboard() {
       {/* Profile... */}
       {tab === 'profile' && <DashProfile />}
       {/* Post...  */}
-      {tab === 'post' && <DashPosts />}
+      {tab === 'posts' && <DashPosts />}
       {/* Users... */}
       {tab === 'users' && <DashUsers />}
       {/* Comment... */}
       {tab === 'comments' && <DashComment />}
+      {/* Dashboard... */}
+      {tab === 'dash' && <DashboardComp />}
       
     </div>
   )
