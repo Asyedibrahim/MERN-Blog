@@ -124,11 +124,6 @@ export default function Header() {
                     About
                 </Navbar.Link>
             </Link>
-            <Link to='/projects'>
-                <Navbar.Link active={path === '/projects'} as={'div'}>
-                    Projects
-                </Navbar.Link>
-            </Link>
             <Navbar.Link className='flex gap-1 cursor-pointer' onClick={() => dispatch(toogleTheme())}>
                 { theme === 'dark' ?  <FaSun className='mt-1'/> : <FaMoon className='mt-1'/> }
                 { theme === 'dark' ?  <span className='md:hidden'>Light Mode</span> : <span className='md:hidden'>Dark Mode</span> }

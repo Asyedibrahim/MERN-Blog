@@ -125,6 +125,7 @@ export default function UpdatePost() {
               <option value="shonen">Shonen</option>
               <option value="adventure">Adventure</option>
               <option value="sports">Sports</option>
+              <option value="romantic">Romantic</option>
               <option value="horror">Horror</option>
             </Select>
           </div>
