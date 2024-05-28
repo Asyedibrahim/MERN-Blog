@@ -17,6 +17,8 @@ body{
 /* Post Page Starts */
 .post-content p{
     margin-bottom: 0.5rem;
+    text-indent: 20px;
+    text-align: justify;
 }
 .post-content h1 {
     font-size: 1.6rem;

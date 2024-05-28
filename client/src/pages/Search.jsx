@@ -9,7 +9,7 @@ export default function Search() {
     const [sidebarData, setSidebarData] = useState({
         searchTerm: '',
         sort: 'desc',
-        category: 'uncategorized'
+        category: 'shonen'
     });
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -39,16 +39,16 @@ export default function Search() {
             setLoading(true);
             const searchQuery = urlParams.toString();
             const res = await fetch(`/api/post/getposts?${searchQuery}`);
+            const data = await res.json();
             if (!res.ok) {
                 setLoading(false);
                 return;
             }
             if (res.ok) {
-                const data = await res.json();
                 setPosts(data.posts);
                 setLoading(false);
             }
-            if (data.post.length === 9) {
+            if (data.posts.length === 9) {
                 setShowMore(true);
             } else {
                 setShowMore(false)
@@ -74,7 +74,7 @@ export default function Search() {
             });
         };
         if (e.target.id === 'category') {
-            const category = e.target.value || 'uncategorized';
+            const category = e.target.value || 'shonen';
             setSidebarData({
                 ...sidebarData,
                 category,
@@ -133,12 +133,11 @@ export default function Search() {
                 <div className="flex items-center gap-2">
                     <label className="font-semibold whitespace-nowrap">Category :</label>
                     <Select onChange={handleChange} value={sidebarData.category} id='category'>
-                        <option value='uncategorized'>Uncategorized</option>
                         <option value='shonen'>Shonen</option>
-                        <option value='adventure'>Adventure</option>
-                        <option value='sports'>Sports</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="sports">Sports</option>
                         <option value="romantic">Romantic</option>
-                        <option value='horror'>Horror</option>
+                        <option value="horror">Horror</option>
                     </Select>
                 </div>
                 <Button type="submit" gradientDuoTone='greenToBlue' outline>Apply Filters</Button>

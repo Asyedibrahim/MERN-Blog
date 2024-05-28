@@ -157,7 +157,7 @@ export default function DashboardComp() {
           </Table>
         </div>
 
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800 overflow-x-scroll scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 table-auto">
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className='text-center p-2'>Recent Posts</h1>
             <Link to={'/dashboard?tab=posts'}>

@@ -20,8 +20,8 @@ export default function FooterCon() {
                     <div>
                         <Footer.Title title='About'/>
                         <Footer.LinkGroup col>
-                            <Footer.Link href='https://www.100jsprojects.com' target='_blank' rel='noopener noreferrer'>
-                                100 js projects
+                            <Footer.Link href='https://www.linkedin.com/in/syed-ibrahim-a-541876261?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' target='_blank' rel='noopener noreferrer'>
+                                Syed Ibrahim
                             </Footer.Link>
                             <Footer.Link href='/about' target='_blank' rel='noopener noreferrer'>
                                 JoyBoy's Blog
@@ -29,7 +29,7 @@ export default function FooterCon() {
                         </Footer.LinkGroup>
                     </div>
                     <div>
-                        <Footer.Title title='Follow us'/>
+                        <Footer.Title title='Follow'/>
                             <Footer.LinkGroup col>
                                 <Footer.Link href='https://www.github.com/asyedibrahim' target='_blank' rel='noopener noreferrer'>
                                     GitHub
