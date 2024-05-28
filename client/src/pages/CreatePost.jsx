@@ -96,10 +96,15 @@ export default function CreatePost() {
             />
             <Select onChange={(e) => setFormData({ ...formData, category: e.target.value})}>
               <option value="shonen">Shonen</option>
+              <option value="seinen">Seinen</option>
               <option value="adventure">Adventure</option>
+              <option value="comedy">Comedy</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="drama">Drama</option>
               <option value="sports">Sports</option>
               <option value="romantic">Romantic</option>
               <option value="horror">Horror</option>
+              <option value="movie">Movie</option>
             </Select>
           </div>
 

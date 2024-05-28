@@ -115,8 +115,8 @@ export default function Search() {
     };
 
   return (
-    <div className="flex flex-col md:flex-row">
-        <div className="p-7 border-b md:border-r md:min-h-screen border-gray-500">
+    <div className="flex flex-col lg:flex-row">
+        <div className="p-7 border-b md:border-r lg:min-h-screen border-gray-500">
             <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
                 <div className="flex items-center gap-2">
                     <label className="whitespace-nowrap font-semibold">Search Term :</label>
@@ -133,11 +133,16 @@ export default function Search() {
                 <div className="flex items-center gap-2">
                     <label className="font-semibold whitespace-nowrap">Category :</label>
                     <Select onChange={handleChange} value={sidebarData.category} id='category'>
-                        <option value='shonen'>Shonen</option>
+                        <option value="shonen">Shonen</option>
+                        <option value="seinen">Seinen</option>
                         <option value="adventure">Adventure</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="drama">Drama</option>
                         <option value="sports">Sports</option>
                         <option value="romantic">Romantic</option>
                         <option value="horror">Horror</option>
+                        <option value="movie">Movie</option>
                     </Select>
                 </div>
                 <Button type="submit" gradientDuoTone='greenToBlue' outline>Apply Filters</Button>
