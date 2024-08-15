@@ -14,8 +14,22 @@ import PostPage from './pages/PostPage';
 import ScrollToTop from './components/ScrollToTop';
 import Search from './pages/Search';
 
+import { useDispatch } from 'react-redux';
+import { checkExpiration } from './redux/user/userSlice.js';
+import { useEffect } from 'react';
 
 export default function App() {
+
+  const dispatch = useDispatch();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            dispatch(checkExpiration());
+        }, 7 * 24 * 60 * 60 * 1000);
+
+        return () => clearInterval(interval);
+    }, [dispatch]);
+
   return (
     <BrowserRouter>
 

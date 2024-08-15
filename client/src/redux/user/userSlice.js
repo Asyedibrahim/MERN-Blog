@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     currentUser: null,
     error: null,
-    loading: null
+    loading: null,
+    timestamp: null
 }
 
 const userSlice = createSlice({
@@ -18,6 +19,7 @@ const userSlice = createSlice({
             state.currentUser = action.payload;
             state.loading = false;
             state.error = false;
+            state.timestamp = Date.now();
         },
         signInFailure: (state, action) => {
             state.error = action.payload;
@@ -53,10 +55,20 @@ const userSlice = createSlice({
             state.currentUser = null;
             state.loading = false;
             state.error = null;
+            state.timestamp = null;
+        },
+        checkExpiration: (state) => {
+            const now = Date.now();
+            const sevenDays = 7 * 24 * 60 * 60 * 1000;
+            if (state.timestamp && now - state.timestamp > sevenDays) {
+                state.currentUser = null;
+                state.error = "Session expired";
+                state.timestamp = null;
+            }
         }
     }
 });
 
-export const { signInStart, signInSuccess, signInFailure, updateStart, updateSuccess, updateFailure, deleteStart, deleteSuccess, deleteFailure, signOutSuccess } = userSlice.actions;
+export const { signInStart, signInSuccess, signInFailure, updateStart, updateSuccess, updateFailure, deleteStart, deleteSuccess, deleteFailure, signOutSuccess, checkExpiration } = userSlice.actions;
 
 export default userSlice.reducer;
